@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>藤田俊哉｜業務自動化・AI導入サポート</title>
+<meta name="description" content="毎月の「面倒な手作業」を、自動化とAIでなくします。Excel転記・紙の集計・ツール間の手作業を、現場に合わせた小さな仕組みで解決。相談・お見積りは無料です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17263B; --ink-soft:#41546E; --paper:#F3F5F4; --card:#FFFFFF; --line:#D4DAD8;
+  --primary:#3E6B8C; --gold:#C7A03C;
+  --mono:'IBM Plex Mono',monospace; --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.95;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--serif);line-height:1.5}
+h2{font-size:23px;font-weight:800;margin-bottom:16px}
+p{margin-bottom:14px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:12px}
+strong{font-weight:700}
+
+/* ヘッダー帯 */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 0;flex-wrap:wrap;gap:10px}
+.logo{font-family:var(--serif);font-weight:800;font-size:17px;letter-spacing:.04em}
+.logo small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;color:var(--ink-soft);font-weight:400;margin-top:2px}
+
+/* CTAボタン */
+.btn{display:inline-block;background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:12px 28px;text-decoration:none;border-radius:2px;letter-spacing:.04em}
+.btn:hover{background:var(--primary)}
+.btn.small{padding:9px 18px;font-size:12.5px}
+.btn-note{font-size:12px;color:var(--ink-soft);margin-top:8px}
+
+/* ヒーロー */
+.hero{padding:64px 0 56px;border-top:2px solid var(--ink)}
+.hero h1{font-size:clamp(26px,6.4vw,38px);font-weight:800;margin-bottom:18px}
+.hero .lead{font-size:16px;margin-bottom:28px}
+
+/* カード */
+.card{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:14px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13.5px;color:var(--ink-soft);line-height:1.85;margin-bottom:0}
+.card .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--primary);display:block;margin-bottom:6px}
+
+/* 進め方リスト */
+.steps{list-style:none}
+.steps li{background:var(--card);border:1px solid var(--line);padding:16px 20px;margin-bottom:10px;font-size:14px;line-height:1.85;padding-left:52px;position:relative}
+.steps li .no{position:absolute;left:18px;top:16px;font-family:var(--mono);font-size:14px;color:var(--primary);font-weight:500}
+.steps li b{display:block;margin-bottom:2px}
+.steps li span{color:var(--ink-soft);font-size:13px}
+
+/* 準備中ボックス */
+.wip{background:var(--card);border:1px dashed var(--line);padding:22px;text-align:center;color:var(--ink-soft);font-size:13.5px;line-height:1.9}
+
+/* プロフィール */
+.profile{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.profile .name{font-family:var(--serif);font-size:20px;font-weight:800}
+.profile .name small{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--ink-soft);display:block;margin-top:2px;font-weight:400}
+
+/* 問い合わせ */
+.contact{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);padding:32px 26px;text-align:center}
+.contact h2{margin-bottom:10px}
+.contact p{font-size:13.5px;color:var(--ink-soft)}
+
+footer{padding:36px 0 56px;border-top:1px solid var(--line)}
+footer p{font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin-bottom:4px}
+
+@media(max-width:480px){
+  section{padding:44px 0}
+  .hero{padding:48px 0 44px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <div class="logo">藤田俊哉<small>SHUNYA FUJITA</small></div>
+  <a class="btn small" href="#contact">無料相談</a>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">業務自動化・AI導入サポート</div>
+  <h1>毎月の「面倒な手作業」、<br>なくせます。</h1>
+  <p class="lead">Excelへの転記、紙の集計、ツール間のコピペ往復——。<strong>現場の定型作業を、あなたの会社に合わせた小さな仕組み</strong>で自動化します。大がかりなシステムも、高額な導入費も必要ありません。</p>
+  <a class="btn" href="#contact">無料で相談する</a>
+  <p class="btn-note">相談・お見積りは無料です。無理な営業はいたしません。</p>
+</div>
+
+<section>
+  <div class="eyebrow">01 ── こんな「面倒」ありませんか</div>
+  <h2>その作業、人がやらなくていいかもしれません</h2>
+  <div class="card"><h3>毎月のデータ集計・転記に時間が消える</h3><p>複数のExcelやCSVから必要な数字を拾って、レポートに手で貼り付けている。月末のたびに数時間かかっている。</p></div>
+  <div class="card"><h3>紙・FAX・フォームの内容を手で入力している</h3><p>紙のアンケートや伝票、フォームの回答を、システムやスプレッドシートに1件ずつ打ち込んでいる。</p></div>
+  <div class="card"><h3>ツールとツールの間を人間が往復している</h3><p>フォームの回答を見てメールを書く、シートを見てLINEで知らせる——「見て、写して、送る」を毎日繰り返している。</p></div>
+</section>
+
+<section>
+  <div class="eyebrow">02 ── できること</div>
+  <h2>小さく始めて、確実に楽にします</h2>
+  <div class="card"><span class="tag">SERVICE 01</span><h3>業務・Webの健康診断</h3><p>今の業務の「どこに時間が消えているか」を見える化し、自動化すべき箇所と費用対効果をレポートにしてお渡しします。Webサイトの改善診断にも対応します。</p></div>
+  <div class="card"><span class="tag">SERVICE 02</span><h3>自動化ツールの製作</h3><p>Excel・スプレッドシートの集計、帳票の処理、フォームと通知の連携など、御社の業務に合わせた自動化の仕組みを製作します。使い方マニュアル付きで納品します。</p></div>
+  <div class="card"><span class="tag">SERVICE 03</span><h3>AI活用の伴走サポート</h3><p>「AIを使いたいが、何から始めればいいかわからない」に、導入から社内定着まで継続的に伴走します。</p></div>
+  <p style="font-size:13px;color:var(--ink-soft)">※ 料金は内容に応じてお見積りします（お見積り無料）。小さな作業の自動化は数万円から承ります。</p>
+</section>
+
+<section>
+  <div class="eyebrow">03 ── 仕事の進め方</div>
+  <h2>安心してお任せいただくために</h2>
+  <ol class="steps">
+    <li><span class="no">01</span><b>作る前に、認識を揃えます</b><span>ご依頼内容を私の言葉で整理してお見せし、ズレがないことをご確認いただいてから着手します。</span></li>
+    <li><span class="no">02</span><b>大切なデータをお預かりしません</b><span>開発はテスト用のダミーデータで行い、実際のデータやパスワードは御社の環境の外に出しません。</span></li>
+    <li><span class="no">03</span><b>マニュアルを必ずお付けします</b><span>パソコンが得意でない方でも使えるよう、専門用語のない使い方マニュアルを同梱します。</span></li>
+    <li><span class="no">04</span><b>納品後1週間は無償で修正します</b><span>納品して終わりにしません。継続的な保守・改善のプランもご用意しています。</span></li>
+  </ol>
+</section>
+
+<section>
+  <div class="eyebrow">04 ── 制作実績</div>
+  <h2>実績</h2>
+  <div class="wip">現在、公開できる実績を準備中です。<br>製作した自動化ツールと改善事例を、このページで順次公開していきます。</div>
+</section>
+
+<section>
+  <div class="eyebrow">05 ── プロフィール</div>
+  <h2>ご挨拶</h2>
+  <div class="profile"><div class="name">藤田俊哉<small>SHUNYA FUJITA</small></div></div>
+  <p style="margin-top:14px">AIを活用した業務改善・自動化を専門にしています。難しい専門用語を使わず、現場の「面倒」を伺うところから始めるのが信条です。<strong>技術の話ではなく、御社の業務の話</strong>をさせてください。</p>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <div class="eyebrow">CONTACT</div>
+    <h2>まずは、お話を聞かせてください</h2>
+    <p style="margin-bottom:22px">「これって自動化できるの？」という段階のご相談も歓迎です。<br>下のフォームから送信いただければ、<strong>24時間以内</strong>にご返信します。</p>
+    <a class="btn" href="https://forms.gle/Uc52S8TTHfyMNLF69" target="_blank" rel="noopener">相談フォームを開く（無料）</a>
+    <p style="margin-top:14px;font-size:12px">※ フォームはGoogleフォームを利用しています。</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Shunya Fujita</p>
+  <p>お問い合わせフォームはGoogle LLCのサービスを利用しています。入力いただいた内容はご相談への回答にのみ使用します。</p>
+</footer>
+
+</div>
+</body>
+</html>
