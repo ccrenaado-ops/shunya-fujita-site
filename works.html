@@ -5,372 +5,499 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>実績｜藤田俊哉｜業務自動化・AI導入サポート</title>
 <meta name="description" content="実際に動くツール・診断レポートの実物・検査の記録を公開しています。CSV/Excel集計ツール、フォーム→PDF＋メール下書きツール、Webサイト診断、内装業向け経理ツール。">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<!--
+  付随ページ統一 / works.html（事業用LPリビルド 決定事項7・site-unify-plan.md）
+  基準= website/index.html（新LP参照実装）＋ guardrails v3 ＋ 本番 design-system。
+  統一方針= 中庸案（オーナー確定 2026-07-16）: 器（ナビ/ロゴ/FV/CONTACT/フッター）は深藍で新LP言語に統一し、
+  情報密度の高い本体（実績〜使用技術）は紙⇄白の穏やかな帯で組む。文言・数値・実績・バッジは現行を一言一句維持（創作ゼロ）。
+  トークン・共通コンポーネント（:root/ナビ/ボタン/eyebrow/h2/帯/フッター/焦点/改行制御）は index.html からコピーし完全一致（LPドメイン3面のドリフト防止）。
+
+  【§0 装飾の予算列挙（guardrails v3 §0-4）】
+  金 3用途 + 注記1:
+    ① ブランドの金導線モチーフ（ロゴマーク＝固定ナビ＋フッターの2箇所・反復1用途/2個）
+    ② セクション番号 .no（eyebrowの番号のみ・5個）
+    ③ プライマリCTA背景 btn-gold（FV＋CONTACTの2個）
+    （注）本文リンクの金下線（index同一idiom・導線/可読性目的）を数箇所に使用＝4用途目・理由明記のうえ採用（§0-1）。散らさない。
+  条件付き許可: a 微グラデ=FV帯の照明感1箇所のみ（同一色相・明度差約5%・他セクションへ反復なし＝index .fv を継承）
+  同時表示（§0-2）: FVビューポートで同時に見える装飾効果は a の1種類のみ（金はアクセント色の別枠管理）。本体は帯の面色のみで装飾効果ゼロ。
+  b/d/e は不採用（本体に影・モーション・幾何装飾を持ち込まない）。
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ═══ 共通基盤（website/index.html からコピー・完全一致） ═══ */
 :root{
-  --ink:#17263B; --ink-soft:#41546E; --paper:#F3F5F4; --card:#FFFFFF; --line:#D4DAD8;
-  --primary:#3E6B8C; --gold:#C7A03C;
-  --mono:'IBM Plex Mono',monospace; --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',sans-serif;
+  --ink:#17263B; --ink-soft:#48566D;
+  --paper:#F6F4EF; --sheet:#FCFBF8;
+  --deep:#17263B; --deep-lift:#1E3049; --deep-floor:#121E30;
+  --line:#D8D4C9; --line-strong:#97938A;
+  --on-deep:#F2EFE7; --on-deep-soft:#A9B3C4; --deep-line:rgba(242,239,231,.22);
+  --gold:#C7A03C; --gold-deep:#A6832F; --gold-text:#8A6A22;  /* 明地テキスト用の金（紙4.59/暖白4.87=AA）。深藍上は--gold(6.19) */
+  --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',sans-serif; --mono:'IBM Plex Mono',monospace;
+  --sec-y:clamp(56px,7.5vw,92px);
+  --sec-y-s:clamp(48px,6vw,72px);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-padding-top:76px}
+.anchor{display:block;height:0;scroll-margin-top:12px}   /* ナビ76px+12px=見出しが88px位置に着地 */
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.95;letter-spacing:.04em;-webkit-font-smoothing:antialiased}
-.wrap{max-width:760px;margin:0 auto;padding:0 24px}
-section{padding:56px 0;border-top:1px solid var(--line)}
-h1,h2,h3{font-family:var(--serif);line-height:1.5;letter-spacing:0}
-/* 日本語の改行制御（PRINCIPLES §1-8） */
 body{line-break:strict}
-h1,h2,h3,h4,h5,h6,p,li,blockquote,dt,dd,figcaption{word-break:auto-phrase}
+h1,h2,h3,p,li,dt,dd,figcaption,.eyebrow,.tag,.lede{word-break:auto-phrase}
 th,td,th *,td *{word-break:normal}
-h1,h2,h3,blockquote{text-wrap:balance}
+h1,h2,h3{text-wrap:balance}
 p{text-wrap:pretty}
-h2{font-size:23px;font-weight:800;margin-bottom:16px}
-p{margin-bottom:14px}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:12px}
+img{max-width:100%;display:block}
+a{color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible,.btn:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.narrow{max-width:880px}
+
+/* ── 見出しの共通文法 ── */
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--ink-soft);margin-bottom:26px;display:flex;align-items:center;gap:14px}
+.eyebrow .no{color:var(--gold-text);font-weight:600}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(23px,2.5vw,31px);line-height:1.6;letter-spacing:.01em;margin-bottom:30px}
+.dark .eyebrow{color:var(--on-deep-soft)}
+.dark .eyebrow .no{color:var(--gold)}
+.dark .eyebrow::after{background:var(--deep-line)}
+.dark h2{color:var(--on-deep)}
+
+/* ── 表面モード（帯リズム） ── */
+.band-paper{background:var(--paper)}
+.band-sheet{background:var(--sheet)}
+.band-deep{background:var(--deep);color:var(--on-deep)}
+section{padding:var(--sec-y) 0}
+
+/* ── ボタン ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 34px;
+  font-weight:700;font-size:14.5px;letter-spacing:.06em;text-decoration:none;border-radius:2px}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-deep);color:#fff}
+.btn-line{border:1px solid var(--line-strong);color:var(--ink);background:transparent}
+.btn-line:hover{border-color:var(--ink);background:var(--sheet)}
+.btn-ghost{border:1px solid var(--deep-line);color:var(--on-deep);background:transparent}
+.btn-ghost:hover{border-color:var(--on-deep)}
+.btn.small{min-height:44px;padding:9px 20px;font-size:13px}
+
+/* ── 固定ナビ（条件付き許可c: blur 1箇所） ── */
+.nav{position:sticky;top:0;z-index:40;background:rgba(246,244,239,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:22px;min-height:64px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto;min-height:44px}
+.brand svg{width:30px;height:30px;color:var(--ink);flex:none}
+.brand .nm{font-family:var(--serif);font-weight:800;font-size:16.5px;letter-spacing:.05em;line-height:1.2}
+.brand .nm small{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.26em;color:var(--ink-soft);font-weight:400;margin-top:2px}
+.nav-links{display:flex;gap:4px;list-style:none;font-size:13px;font-weight:500}
+.nav-links a{display:inline-block;padding:10px 12px;text-decoration:none;color:var(--ink-soft);white-space:nowrap}
+.nav-links a:hover{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ink)}
+
+/* ── FV（深藍帯・条件付き許可a: 微グラデ1箇所） ── */
+.fv{background:radial-gradient(120% 90% at 70% 8%, var(--deep-lift) 0%, var(--deep) 58%);color:var(--on-deep);padding:calc(var(--sec-y) - 8px) 0 var(--sec-y)}
+.fv .eyebrow{color:var(--on-deep-soft)}
+.fv .eyebrow::after{background:var(--deep-line)}
+.fv h1{font-family:var(--serif);font-weight:700;font-size:clamp(26px,2.85vw,36px);line-height:1.62;letter-spacing:.01em;margin-bottom:22px;color:#FFFFFF}
+.fv .lead{font-size:15.5px;line-height:2.05;margin-bottom:16px;color:var(--on-deep)}
+.fv .lead strong{color:#fff;font-weight:700}
+.fv .note{font-size:13px;color:var(--on-deep-soft);line-height:1.95;margin-bottom:28px}
+.cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+
+/* ── フッター ── */
+footer{background:var(--deep-floor);color:var(--on-deep-soft);padding:44px 0 52px}
+.foot-in{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:10px;color:var(--on-deep)}
+.foot-brand svg{width:24px;height:24px;color:var(--on-deep)}
+.foot-brand .nm{font-family:var(--serif);font-weight:700;font-size:14.5px}
+.foot-right{max-width:36em;font-size:11.5px;line-height:1.9}
+.foot-right .cr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;margin-bottom:8px;color:var(--on-deep)}
+.foot-right p{margin-bottom:8px}
+.foot-right a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-deep);text-decoration:none}
+.foot-right a span{border-bottom:1px solid var(--deep-line);padding-bottom:1px}
+.foot-right a:hover{border-bottom-color:var(--on-deep)}
+
+/* ═══ works 固有（本体＝紙基調・カードは親帯の反対トーンで明度差の奥行き §1-10） ═══ */
+.lede{font-size:14px;color:var(--ink-soft);margin-bottom:26px;line-height:2}
 strong{font-weight:700}
-.lede{font-size:13.5px;color:var(--ink-soft);margin-bottom:24px}
 
-/* ヘッダー帯 */
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 0;flex-wrap:wrap;gap:10px}
-.logo{font-family:var(--serif);font-weight:800;font-size:17px;letter-spacing:.04em}
-.logo small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;color:var(--ink-soft);font-weight:400;margin-top:2px}
-.nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.nav a.back{font-size:13px;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding:12px 2px}
-.nav a.back:hover{color:var(--primary);border-bottom-color:var(--primary)}
+/* カード面の共通トーン（親帯の反対色で微妙な浮き＝影に頼らない） */
+.band-paper .surf{background:var(--sheet)}
+.band-sheet .surf{background:var(--paper)}
 
-/* CTAボタン */
-.btn{display:inline-block;background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:12px 28px;text-decoration:none;border-radius:2px;letter-spacing:.04em}
-.btn:hover{background:var(--primary)}
-.btn.small{padding:11px 18px;font-size:12.5px}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.btn.ghost:hover{background:var(--card);color:var(--primary);border-color:var(--primary)}
-/* キーボードフォーカスの可視化（web.md §3・--web-focus 相当） */
-a:focus-visible,.btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.btn-note{font-size:12px;color:var(--ink-soft);margin-top:8px}
+/* 実測/想定値バッジ（現行works踏襲・mono枠） */
+.badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:2px 7px;border:1px solid var(--line-strong);color:var(--ink-soft);white-space:nowrap}
+.badge.measured{color:var(--gold-text);border-color:var(--gold-text)}
 
-/* ヒーロー */
-.hero{padding:64px 0 56px;border-top:2px solid var(--ink)}
-.hero h1{font-size:clamp(25px,5.8vw,34px);font-weight:800;margin-bottom:18px}
-.hero .lead{font-size:16px;margin-bottom:18px}
-.hero .note{font-size:13px;color:var(--ink-soft);line-height:1.9}
+/* FV内バッジは反転配色 */
+.fv .badge{border-color:var(--deep-line);color:var(--on-deep-soft)}
+.fv .badge.measured{color:var(--gold);border-color:var(--gold)}
 
 /* 実績カード */
-.work{background:var(--card);border:1px solid var(--line);padding:24px 24px 20px;margin-bottom:20px}
-.work .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--primary);display:block;margin-bottom:6px}
+.work{border:1px solid var(--line);padding:26px 26px 22px;margin-bottom:22px}
+.work .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gold-text);display:block;margin-bottom:8px}
 .work .tag.wip{color:var(--ink-soft)}
-.work h3{font-size:17px;font-weight:700;margin-bottom:16px}
-/* 複合語の途中で改行が割れるのを防ぐ（PRINCIPLES §1-8。375pxで実測して指定した箇所のみ） */
+.work h3{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.7;margin-bottom:16px}
 .nw{white-space:nowrap}
 
 /* 事実の3行（困りごと/やったこと/結果） */
-.fact{display:grid;grid-template-columns:88px minmax(0,1fr);gap:0 14px;padding:10px 0;border-top:1px solid var(--line)}
-.fact-k{min-width:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);padding-top:5px}
+.fact{display:grid;grid-template-columns:92px minmax(0,1fr);gap:0 16px;padding:12px 0;border-top:1px solid var(--line)}
+.fact-k{min-width:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);padding-top:6px}
 .fact-v{min-width:0}
-.fact-v p{font-size:13.5px;color:var(--ink-soft);line-height:1.85;margin-bottom:0}
+.fact-v p{font-size:13.5px;color:var(--ink-soft);line-height:1.9;margin-bottom:0}
 .fact-v p + p{margin-top:8px}
 
-/* 数字の強調（PRINCIPLES §1-6） */
-.metric{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
-.metric .num{min-width:0;font-family:var(--serif);font-size:24px;font-weight:800;color:var(--ink);line-height:1.4}
+/* 数字の強調 */
+.metric{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.metric .num{min-width:0;font-family:var(--serif);font-size:23px;font-weight:800;color:var(--ink);line-height:1.4;letter-spacing:.01em}
 .metric .unit{min-width:0;font-size:12.5px;color:var(--ink-soft)}
-.badge{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:2px 7px;border:1px solid var(--line);color:var(--ink-soft)}
-.badge.measured{color:var(--primary);border-color:var(--primary)}
 
-.actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.src{font-size:12.5px;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding:12px 2px}
-.src:hover{color:var(--primary);border-bottom-color:var(--primary)}
+.actions{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.src{font-size:12.5px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.src span{border-bottom:1px solid var(--line-strong);padding-bottom:2px}
+.src:hover{color:var(--ink)}
+.src:hover span{border-bottom-color:var(--ink)}
 
 /* 品質の担保 */
-.proof{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);padding:20px 22px;margin-bottom:14px}
-.proof h3{font-size:16px;font-weight:700;margin-bottom:6px}
-.proof p{font-size:13.5px;color:var(--ink-soft);line-height:1.85;margin-bottom:0}
+.proof{border:1px solid var(--line);border-left:2px solid var(--ink);padding:22px 24px;margin-bottom:16px}
+.proof h3{font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.7}
+.proof p{font-size:13.5px;color:var(--ink-soft);line-height:1.9;margin-bottom:0}
 
 /* 対応範囲（2列） */
-.scope{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
-.scope > div{min-width:0;background:var(--card);border:1px solid var(--line);padding:18px 20px}
-.scope h3{font-size:14px;font-weight:700;margin-bottom:10px}
+.scope{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.scope > div{min-width:0;border:1px solid var(--line);padding:22px 24px}
+.scope h3{font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:12px}
 .scope ul{list-style:none}
-.scope li{font-size:13px;color:var(--ink-soft);line-height:1.8;padding-left:16px;position:relative;margin-bottom:6px}
-.scope li::before{content:"—";position:absolute;left:0;color:var(--line)}
+.scope li{font-size:13px;color:var(--ink-soft);line-height:1.85;padding-left:18px;position:relative;margin-bottom:7px}
+.scope li::before{content:"—";position:absolute;left:0;color:var(--line-strong)}
 
 /* 進め方リスト */
 .steps{list-style:none}
-.steps li{background:var(--card);border:1px solid var(--line);padding:16px 20px;margin-bottom:10px;font-size:14px;line-height:1.85;padding-left:52px;position:relative}
-.steps li .no{position:absolute;left:18px;top:16px;font-family:var(--mono);font-size:14px;color:var(--primary);font-weight:500}
-.steps li b{display:block;margin-bottom:2px}
+.steps li{border:1px solid var(--line);padding:18px 22px 18px 56px;margin-bottom:12px;font-size:14px;line-height:1.9;position:relative}
+.steps li .no{position:absolute;left:22px;top:18px;font-family:var(--mono);font-size:14px;color:var(--gold-text);font-weight:500}
+.steps li b{display:block;margin-bottom:3px;font-weight:700}
 .steps li span{color:var(--ink-soft);font-size:13px}
 
 /* 使用技術 */
-.tech{border:1px solid var(--line);padding:18px 20px}
-.tech dl{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 14px}
+.tech{border:1px solid var(--line);padding:22px 24px}
+.tech dl{display:grid;grid-template-columns:100px minmax(0,1fr);gap:10px 16px}
 .tech dt{min-width:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);padding-top:3px}
-.tech dd{min-width:0;font-size:13px;color:var(--ink-soft);line-height:1.8;overflow-wrap:anywhere}
+.tech dd{min-width:0;font-size:13px;color:var(--ink-soft);line-height:1.85;overflow-wrap:anywhere}
 
-/* 問い合わせ */
-.contact{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);padding:32px 26px;text-align:center}
-.contact h2{margin-bottom:10px}
-.contact p{font-size:13.5px;color:var(--ink-soft)}
+/* CONTACT（深藍） */
+.contact-copy{font-size:14.5px;line-height:2.05;color:var(--on-deep);margin-bottom:8px}
+.contact-copy.sub{font-size:13px;color:var(--on-deep-soft);margin-bottom:26px}
+.contact-note{font-size:12px;color:var(--on-deep-soft);margin-top:16px}
 
-footer{padding:36px 0 56px;border-top:1px solid var(--line)}
-footer p{font-size:11.5px;color:var(--ink-soft);line-height:1.8;margin-bottom:4px}
-
-/* 印刷・PDF（design-system/export-guide.md §3。紙・添付で配るため、リンク先URLを可視化する） */
-@page{size:A4;margin:14mm}
-@media print{
-  body{background:#fff;font-size:12.5px;line-height:1.8}
-  .wrap{max-width:100%;padding:0}
-  section{padding:28px 0 0}
-  .hero{padding:0 0 24px;border-top:none}
-  .work,.proof,.scope > div,.steps li,.tech,.contact{page-break-inside:avoid}
-  .nav{display:none}
-  .btn{background:transparent;color:var(--ink);border:1px solid var(--line);padding:8px 14px}
-  a{color:inherit}
-  .actions a[href^="http"]::after,.contact a[href^="http"]::after{content:" " attr(href);font-family:var(--mono);font-size:10px;color:var(--ink-soft);overflow-wrap:anywhere}
-  .actions a[data-print-url]::after{content:" " attr(data-print-url);font-family:var(--mono);font-size:10px;color:var(--ink-soft);overflow-wrap:anywhere}
-  .actions{display:block}
-  .actions a{display:block;margin-bottom:4px;border:none;padding:2px 0}
-}
-
-@media(max-width:560px){
-  section{padding:44px 0}
-  .hero{padding:48px 0 44px}
+/* ── レスポンシブ ── */
+@media(max-width:640px){
+  .wrap{padding:0 20px}
+  body{font-size:15px}
+  .nav-in{gap:12px}
+  .nav-cta{display:none}
+  .work{padding:22px 20px 18px}
   .fact{grid-template-columns:minmax(0,1fr);gap:2px}
   .fact-k{padding-top:0}
   .scope{grid-template-columns:minmax(0,1fr)}
   .tech dl{grid-template-columns:minmax(0,1fr);gap:2px 0}
-  .tech dd{margin-bottom:8px}
+  .tech dd{margin-bottom:10px}
+  .cta-row .btn{width:100%}
+}
+
+/* ── 印刷・PDF（紙・添付で配るためリンク先URLを可視化。深藍帯は白へフラット化） ── */
+@page{size:A4;margin:14mm}
+@media print{
+  body{background:#fff;color:var(--ink);font-size:12.5px;line-height:1.8}
+  .wrap{max-width:100%;padding:0}
+  .nav{display:none}
+  section{padding:26px 0 0}
+  .fv{background:#fff;color:var(--ink);padding:0 0 22px}
+  .fv h1,.fv .lead,.fv .lead strong{color:var(--ink)}
+  .fv .note{color:var(--ink-soft)}
+  .fv .badge{border-color:var(--line-strong);color:var(--ink-soft)}
+  .fv .badge.measured,.badge.measured{color:var(--gold-text);border-color:var(--gold-text)}
+  .band-deep,.band-deep.dark{background:#fff;color:var(--ink)}
+  .band-deep .eyebrow,.band-deep h2,.contact-copy,.contact-copy.sub{color:var(--ink)}
+  .band-paper .surf,.band-sheet .surf{background:#fff}
+  .work,.proof,.scope > div,.steps li,.tech{page-break-inside:avoid}
+  .btn{background:transparent;color:var(--ink);border:1px solid var(--line-strong);min-height:0;padding:8px 14px}
+  a{color:inherit}
+  .actions a[href^="http"]::after,.contact-actions a[href^="http"]::after{content:" " attr(href);font-family:var(--mono);font-size:10px;color:var(--ink-soft);overflow-wrap:anywhere}
+  .actions a[data-print-url]::after{content:" " attr(data-print-url);font-family:var(--mono);font-size:10px;color:var(--ink-soft);overflow-wrap:anywhere}
+  .actions{display:block}
+  .actions a{display:block;margin-bottom:4px;min-height:0}
+  .src span{border:none}
+  footer{background:#fff;color:var(--ink-soft)}
+  .foot-brand,.foot-brand .nm{color:var(--ink)}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<div class="topbar">
-  <div class="logo">藤田俊哉<small>SHUNYA FUJITA</small></div>
-  <div class="nav">
-    <a class="back" href="./">トップページ</a>
-    <a class="btn small" href="#contact">無料相談</a>
+<!-- ══ 固定ナビ ══ -->
+<nav class="nav" aria-label="ページ内メニュー">
+  <div class="wrap nav-in" style="overflow-x:auto">
+    <a class="brand" href="#top" aria-label="藤田俊哉 実績ページ先頭へ">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 10h7M8 15.5h7M8 21h7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 25.5h8.5L26 9.5" stroke="#C7A03C" stroke-width="2.4" fill="none"/></svg>
+      <span class="nm">藤田俊哉<small>SHUNYA FUJITA</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#works-list">実績</a></li>
+      <li><a href="#quality">品質の担保</a></li>
+      <li><a href="#scope">対応範囲</a></li>
+      <li><a href="#flow">進め方</a></li>
+      <li><a href="#tech">使用技術</a></li>
+      <li><a href="./">トップへ</a></li>
+    </ul>
+    <a class="btn btn-gold small nav-cta" href="#contact">無料相談</a>
   </div>
-</div>
+</nav>
 
-<div class="hero">
-  <div class="eyebrow">実績 ── 作ったものと、確かめ方</div>
-  <h1>説明ではなく、動くものを<br>触って確かめてください。</h1>
-  <p class="lead">ここに載せているものは、<strong>実際に公開して動いているツール</strong>と、<strong>実物の診断レポート</strong>です。中身のソースコードも公開しています。「できます」という言葉ではなく、現物でご判断ください。</p>
-  <p class="note">効果の数字には、実際に測った値（<span class="badge measured">実測</span>）と、同種の業務からの見積り（<span class="badge">想定値</span>）を分けて表示しています。測っていない数字は載せません。</p>
-</div>
-
-<section>
-  <div class="eyebrow">01 ── 制作実績</div>
-  <h2>公開している2本は、いま無料で試せます</h2>
-
-  <div class="work">
-    <span class="tag">WORKS 01 ── 自社開発・無料公開中</span>
-    <h3>CSV/Excelまとめて集計ツール</h3>
-    <div class="fact">
-      <div class="fact-k">困りごと</div>
-      <div class="fact-v"><p>毎月、支店ごと・取引先ごとに分かれたCSVやExcelを1つずつ開いて、集計表に数字を手で写している。月末のたびに数時間が消える。</p></div>
+<!-- ══ FV（深藍帯・入口） ══ -->
+<header class="fv" id="top">
+  <div class="wrap narrow">
+    <div class="eyebrow">実績 ── 作ったものと、確かめ方</div>
+    <h1>説明ではなく、動くものを<br>触って確かめてください。</h1>
+    <p class="lead">ここに載せているものは、<strong>実際に公開して動いているツール</strong>と、<strong>実物の診断レポート</strong>です。中身のソースコードも公開しています。「できます」という言葉ではなく、現物でご判断ください。</p>
+    <p class="note">効果の数字には、実際に測った値（<span class="badge measured">実測</span>）と、同種の業務からの見積り（<span class="badge">想定値</span>）を分けて表示しています。測っていない数字は載せません。</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#contact">無料で相談する</a>
     </div>
-    <div class="fact">
-      <div class="fact-k">やったこと</div>
-      <div class="fact-v"><p>ファイルをまとめて入れるだけで、列の名前が多少ちがっても対応づけて、1つの集計レポート（Excel）にまとめるツールを作り、無料で公開しました。インストールは不要です。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">結果</div>
-      <div class="fact-v">
-        <p class="metric"><span class="num">約2時間 → 約5分</span><span class="unit">月末の集計・転記　<span class="badge">想定値</span></span></p>
-        <p>公開前の検査で、合計金額が気づかれないままズレる不具合を3件見つけて直してから公開しました（この検査の話は下の「品質の担保」に書いています）。</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ══ 01 制作実績（紙） ══ -->
+<section class="band-paper">
+  <div class="wrap narrow"><span class="anchor" id="works-list"></span>
+    <div class="eyebrow"><span class="no">01</span>制作実績</div>
+    <h2>公開している2本は、いま無料で試せます</h2>
+
+    <div class="work surf">
+      <span class="tag">WORKS 01 ── 自社開発・無料公開中</span>
+      <h3>CSV/Excelまとめて集計ツール</h3>
+      <div class="fact">
+        <div class="fact-k">困りごと</div>
+        <div class="fact-v"><p>毎月、支店ごと・取引先ごとに分かれたCSVやExcelを1つずつ開いて、集計表に数字を手で写している。月末のたびに数時間が消える。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">やったこと</div>
+        <div class="fact-v"><p>ファイルをまとめて入れるだけで、列の名前が多少ちがっても対応づけて、1つの集計レポート（Excel）にまとめるツールを作り、無料で公開しました。インストールは不要です。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">結果</div>
+        <div class="fact-v">
+          <p class="metric"><span class="num">約2時間 → 約5分</span><span class="unit">月末の集計・転記　<span class="badge">想定値</span></span></p>
+          <p>公開前の検査で、合計金額が気づかれないままズレる不具合を3件見つけて直してから公開しました（この検査の話は下の「品質の担保」に書いています）。</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-line small" href="https://csv-excel-aggregator.vercel.app/" target="_blank" rel="noopener">実際に試す（無料・登録不要）</a>
+        <a class="src" href="https://github.com/ccrenaado-ops/csv-excel-aggregator" target="_blank" rel="noopener"><span>中身のソースコードを見る</span></a>
       </div>
     </div>
-    <div class="actions">
-      <a class="btn small" href="https://csv-excel-aggregator.vercel.app/" target="_blank" rel="noopener">実際に試す（無料・登録不要）</a>
-      <a class="src" href="https://github.com/ccrenaado-ops/csv-excel-aggregator" target="_blank" rel="noopener">中身のソースコードを見る</a>
-    </div>
-  </div>
 
-  <div class="work">
-    <span class="tag">WORKS 02 ── 自社開発・無料公開中</span>
-    <h3>フォーム回答からPDFレポート＋メール下書きを作るツール</h3>
-    <div class="fact">
-      <div class="fact-k">困りごと</div>
-      <div class="fact-v"><p>アンケートや申込みの回答を、1件ずつPDFにして、メールに宛名と添付をつけて送っている。人数分くり返すしかない。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">やったこと</div>
-      <div class="fact-v"><p>回答のCSVから、一人ひとりのPDFレポートと、宛先・件名・本文・添付ファイルが入ったメールの下書きを作るツールです。レポートの見せ方は3種類から選べます。<strong>送信は行いません</strong>（下書きまで作り、送るかどうかは人が決めます）。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">結果</div>
-      <div class="fact-v">
-        <p class="metric"><span class="num">5,000件を 約0.4秒</span><span class="unit">回答ファイルの読み込み　<span class="badge measured">実測</span></span></p>
-        <p>お名前やメールアドレスは、お使いのパソコンの外に出ません。公開後の本番環境で通信を記録し、<strong>外部へ送信されたデータが0件</strong>であることを確認しています（<span class="badge measured">実測</span>）。</p>
+    <div class="work surf">
+      <span class="tag">WORKS 02 ── 自社開発・無料公開中</span>
+      <h3>フォーム回答からPDFレポート＋メール下書きを作るツール</h3>
+      <div class="fact">
+        <div class="fact-k">困りごと</div>
+        <div class="fact-v"><p>アンケートや申込みの回答を、1件ずつPDFにして、メールに宛名と添付をつけて送っている。人数分くり返すしかない。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">やったこと</div>
+        <div class="fact-v"><p>回答のCSVから、一人ひとりのPDFレポートと、宛先・件名・本文・添付ファイルが入ったメールの下書きを作るツールです。レポートの見せ方は3種類から選べます。<strong>送信は行いません</strong>（下書きまで作り、送るかどうかは人が決めます）。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">結果</div>
+        <div class="fact-v">
+          <p class="metric"><span class="num">5,000件を 約0.4秒</span><span class="unit">回答ファイルの読み込み　<span class="badge measured">実測</span></span></p>
+          <p>お名前やメールアドレスは、お使いのパソコンの外に出ません。公開後の本番環境で通信を記録し、<strong>外部へ送信されたデータが0件</strong>であることを確認しています（<span class="badge measured">実測</span>）。</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-line small" href="https://form-to-pdf-mail.vercel.app/" target="_blank" rel="noopener">実際に試す（無料・登録不要）</a>
+        <a class="src" href="https://github.com/ccrenaado-ops/form-to-pdf-mail" target="_blank" rel="noopener"><span>中身のソースコードを見る</span></a>
       </div>
     </div>
-    <div class="actions">
-      <a class="btn small" href="https://form-to-pdf-mail.vercel.app/" target="_blank" rel="noopener">実際に試す（無料・登録不要）</a>
-      <a class="src" href="https://github.com/ccrenaado-ops/form-to-pdf-mail" target="_blank" rel="noopener">中身のソースコードを見る</a>
-    </div>
-  </div>
 
-  <div class="work">
-    <span class="tag">WORKS 03 ── 自社サイトでの実演</span>
-    <h3>Webサイトの<span class="nw">診断と改善</span>（Before / After）</h3>
-    <div class="fact">
-      <div class="fact-k">困りごと</div>
-      <div class="fact-v"><p>公開したばかりの自分の事業サイトが、「感じは良いけれど、問い合わせにつながる根拠がない」状態だった。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">やったこと</div>
-      <div class="fact-v"><p>7つの観点で診断して弱点を点数にし、効果の大きい6箇所だけを直して、同じ基準で診断し直しました。お客様にお渡しする診断レポートも、これと同じ形式・同じ粒度です。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">結果</div>
-      <div class="fact-v">
-        <p class="metric"><span class="num">57点 → 64点</span><span class="unit">診断スコア（同日実施）　<span class="badge measured">実測</span></span></p>
-        <p>「文章を直せば上がる点」と「実績の実物がなければ上がらない点」を切り分けました。<strong>上がらなかった項目も、正直にレポートに書いています。</strong></p>
+    <div class="work surf">
+      <span class="tag">WORKS 03 ── 自社サイトでの実演</span>
+      <h3>Webサイトの<span class="nw">診断と改善</span>（Before / After）</h3>
+      <div class="fact">
+        <div class="fact-k">困りごと</div>
+        <div class="fact-v"><p>公開したばかりの自分の事業サイトが、「感じは良いけれど、問い合わせにつながる根拠がない」状態だった。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">やったこと</div>
+        <div class="fact-v"><p>7つの観点で診断して弱点を点数にし、効果の大きい6箇所だけを直して、同じ基準で診断し直しました。お客様にお渡しする診断レポートも、これと同じ形式・同じ粒度です。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">結果</div>
+        <div class="fact-v">
+          <p class="metric"><span class="num">57点 → 64点</span><span class="unit">診断スコア（同日実施）　<span class="badge measured">実測</span></span></p>
+          <p>「文章を直せば上がる点」と「実績の実物がなければ上がらない点」を切り分けました。<strong>上がらなかった項目も、正直にレポートに書いています。</strong></p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-line small" href="./sample-report.html" data-print-url="https://shunya-fujita-site.vercel.app/sample-report.html">診断レポートの実物を見る</a>
       </div>
     </div>
-    <div class="actions">
-      <a class="btn small ghost" href="./sample-report.html" data-print-url="https://shunya-fujita-site.vercel.app/sample-report.html">診断レポートの実物を見る</a>
-    </div>
-  </div>
 
-  <div class="work">
-    <span class="tag wip">WORKS 04 ── 開発・試験運用の準備中</span>
-    <h3>内装業向け <span class="nw">経理・請求ツール</span>（スマホ対応）</h3>
-    <div class="fact">
-      <div class="fact-k">困りごと</div>
-      <div class="fact-v"><p>現場ごとの材料費を、紙の請求書を見ながら手で書き写し、月末にまた手で請求書を作っている。現場が終わってからの事務作業が夜に残る。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">やったこと</div>
-      <div class="fact-v"><p>紙の請求書やレシートをスマホで撮ると、AIが明細を1行ずつ読み取り、現場ごとに自動で振り分けます。月末には、選んだ現場・選んだ月の請求書（PDF）まで作れます。スマホのホーム画面から、アプリのように開けます。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">結果</div>
-      <div class="fact-v">
-        <p class="metric"><span class="num">20行中 20行 正解</span><span class="unit">明細が詰まった請求書での現場の振り分け　<span class="badge measured">実測</span></span></p>
-        <p>レシート1枚の読み取りは約2〜3秒です（<span class="badge measured">実測</span>）。一方で、<strong>書類が横向き（90度回転）になった写真では精度と速度が落ちる</strong>ことも確認しており、「文字が正しい向きになるように撮ってください」とご案内しています。できないことは隠さずお伝えします。</p>
+    <div class="work surf">
+      <span class="tag wip">WORKS 04 ── 開発・試験運用の準備中</span>
+      <h3>内装業向け <span class="nw">経理・請求ツール</span>（スマホ対応）</h3>
+      <div class="fact">
+        <div class="fact-k">困りごと</div>
+        <div class="fact-v"><p>現場ごとの材料費を、紙の請求書を見ながら手で書き写し、月末にまた手で請求書を作っている。現場が終わってからの事務作業が夜に残る。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">やったこと</div>
+        <div class="fact-v"><p>紙の請求書やレシートをスマホで撮ると、AIが明細を1行ずつ読み取り、現場ごとに自動で振り分けます。月末には、選んだ現場・選んだ月の請求書（PDF）まで作れます。スマホのホーム画面から、アプリのように開けます。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">結果</div>
+        <div class="fact-v">
+          <p class="metric"><span class="num">20行中 20行 正解</span><span class="unit">明細が詰まった請求書での現場の振り分け　<span class="badge measured">実測</span></span></p>
+          <p>レシート1枚の読み取りは約2〜3秒です（<span class="badge measured">実測</span>）。一方で、<strong>書類が横向き（90度回転）になった写真では精度と速度が落ちる</strong>ことも確認しており、「文字が正しい向きになるように撮ってください」とご案内しています。できないことは隠さずお伝えします。</p>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">ご注意</div>
+        <div class="fact-v"><p>内装業を営む個人事業主（私の身内）の実際の業務にあわせて開発したもので、現在は<strong>本人による試験運用の準備段階</strong>です。実際の取引情報を扱うため、体験版とソースコードは公開していません。商談の場では画面をお見せできます。</p></div>
       </div>
     </div>
-    <div class="fact">
-      <div class="fact-k">ご注意</div>
-      <div class="fact-v"><p>内装業を営む個人事業主（私の身内）の実際の業務にあわせて開発したもので、現在は<strong>本人による試験運用の準備段階</strong>です。実際の取引情報を扱うため、体験版とソースコードは公開していません。商談の場では画面をお見せできます。</p></div>
-    </div>
-  </div>
 
-  <div class="work">
-    <span class="tag wip">MATERIAL ── 社内研修用の教材（個別提供）</span>
-    <h3>はじめてのAI研修教材</h3>
-    <div class="fact">
-      <div class="fact-k">内容</div>
-      <div class="fact-v"><p>AIをまったく使ったことがない方が、「話せる」→「仕事を任せられる」→「自分の仕組みにできる」の3段階で進める教材です。各段階に「できるようになったか」を確かめる課題と、そのまま使えるお手本集が付いています。</p></div>
-    </div>
-    <div class="fact">
-      <div class="fact-k">提供</div>
-      <div class="fact-v"><p>社内研修・勉強会でご入用の場合に、個別にお渡ししています（一般公開はしていません）。ご相談の際にお申し付けください。</p></div>
+    <div class="work surf">
+      <span class="tag wip">MATERIAL ── 社内研修用の教材（個別提供）</span>
+      <h3>はじめてのAI研修教材</h3>
+      <div class="fact">
+        <div class="fact-k">内容</div>
+        <div class="fact-v"><p>AIをまったく使ったことがない方が、「話せる」→「仕事を任せられる」→「自分の仕組みにできる」の3段階で進める教材です。各段階に「できるようになったか」を確かめる課題と、そのまま使えるお手本集が付いています。</p></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">提供</div>
+        <div class="fact-v"><p>社内研修・勉強会でご入用の場合に、個別にお渡ししています（一般公開はしていません）。ご相談の際にお申し付けください。</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="eyebrow">02 ── 品質の担保</div>
-  <h2>作ったものより、<span class="nw">どう確かめたか</span>を見てください</h2>
-  <p class="lede">個人に仕事を頼むときの一番の不安は、「本当に大丈夫か、誰も見ていないのではないか」だと思います。私は、自分の作ったものを落とすための検査を、納品前に必ず行っています。</p>
+<!-- ══ 02 品質の担保（白） ══ -->
+<section class="band-sheet">
+  <div class="wrap narrow"><span class="anchor" id="quality"></span>
+    <div class="eyebrow"><span class="no">02</span>品質の担保</div>
+    <h2>作ったものより、<span class="nw">どう確かめたか</span>を見てください</h2>
+    <p class="lede">個人に仕事を頼むときの一番の不安は、「本当に大丈夫か、誰も見ていないのではないか」だと思います。私は、自分の作ったものを<span class="nw">落とす</span>ための検査を、納品前に必ず行っています。</p>
 
-  <div class="proof">
-    <h3>お預かりしたデータを、外に出しません</h3>
-    <p>公開している2本のツールは、処理がすべてお使いのパソコンの中で完結します。公開後の本番環境で通信を記録し、外部へ送信されたデータが<strong>0件</strong>であることを確認しました。画面を乗っ取ろうとする不正な文字列を実際に流し込む試験も行い、<strong>発火は0回</strong>です（いずれも<span class="badge measured">実測</span>）。開発中も、お客様の実データではなくテスト用のダミーデータだけを使います。</p>
-  </div>
-  <div class="proof">
-    <h3>自分の作ったものを、<span class="nw">落とすつもり</span>で検査します</h3>
-    <p>CSV/Excel集計ツールでは、公開前の検査で<strong>合計金額が気づかれないままズレる不具合を3件</strong>見つけ、直してから公開しました。「動いたから完成」とはしません。空のファイル・壊れたファイル・想定外の大量データを実際に入れて、壊れないことを確かめます。検査の記録は、ご希望があればそのままお渡しします。</p>
-  </div>
-  <div class="proof">
-    <h3>納品して終わりにしません</h3>
-    <p>パソコンが得意でない方でも使えるよう、専門用語のない使い方マニュアルを標準でお付けします。納品後1週間は無償で修正し、その後の保守・改善もご相談いただけます。</p>
-  </div>
-</section>
-
-<section>
-  <div class="eyebrow">03 ── 対応範囲</div>
-  <h2>できることと、お受けしないことを先に申し上げます</h2>
-  <div class="scope">
-    <div>
-      <h3>お受けしていること</h3>
-      <ul>
-        <li>Excel・スプレッドシートの集計、転記の自動化</li>
-        <li>フォームの回答から書類・通知を作る仕組み</li>
-        <li>紙・写真の読み取り（AIによる帳票の読み取り）</li>
-        <li>業務・Webサイトの健康診断レポート</li>
-        <li>AI活用の伴走サポート・社内研修</li>
-      </ul>
+    <div class="proof surf">
+      <h3>お預かりしたデータを、外に出しません</h3>
+      <p>公開している2本のツールは、処理がすべてお使いのパソコンの中で完結します。公開後の本番環境で通信を記録し、外部へ送信されたデータが<strong>0件</strong>であることを確認しました。画面を乗っ取ろうとする不正な文字列を実際に流し込む試験も行い、<strong>発火は0回</strong>です（いずれも<span class="badge measured">実測</span>）。開発中も、お客様の実データではなくテスト用のダミーデータだけを使います。</p>
     </div>
-    <div>
-      <h3>お受けしていないこと</h3>
-      <ul>
-        <li>見た目を整えるだけのWebサイト制作</li>
-        <li>大規模な基幹システムの構築</li>
-        <li>お客様の実データを私の手元でお預かりする前提の作業</li>
-      </ul>
+    <div class="proof surf">
+      <h3>自分の作ったものを、<span class="nw">落とすつもり</span>で検査します</h3>
+      <p>CSV/Excel集計ツールでは、公開前の検査で<strong>合計金額が気づかれないままズレる不具合を3件</strong>見つけ、直してから公開しました。「動いたから完成」とはしません。空のファイル・壊れたファイル・想定外の大量データを実際に入れて、壊れないことを確かめます。検査の記録は、ご希望があればそのままお渡しします。</p>
+    </div>
+    <div class="proof surf">
+      <h3>納品して終わりにしません</h3>
+      <p>パソコンが得意でない方でも使えるよう、専門用語のない使い方マニュアルを標準でお付けします。納品後1週間は無償で修正し、その後の保守・改善もご相談いただけます。</p>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="eyebrow">04 ── 仕事の進め方</div>
-  <h2>ズレたまま進めない、が一番大事だと考えています</h2>
-  <ol class="steps">
-    <li><span class="no">01</span><b>お困りごとを伺います</b><span>いまの手順を、実際の作業のとおりに教えてください。「これは自動化できるのか」の段階で構いません。</span></li>
-    <li><span class="no">02</span><b>私の言葉で整理してお見せします</b><span>やること・やらないこと・費用・期間を紙にしてご確認いただき、認識が合ってから着手します。</span></li>
-    <li><span class="no">03</span><b>ダミーデータで製作します</b><span>開発中は、お客様の実データやパスワードを外に出しません。</span></li>
-    <li><span class="no">04</span><b>落とすつもりで検査します</b><span>想定外の入力を入れて壊れないことを確認し、検査の記録を残します。</span></li>
-    <li><span class="no">05</span><b>マニュアルを付けて納品し、その後も直します</b><span>納品後1週間は無償で修正。保守・改善のご提案もいたします。</span></li>
-  </ol>
-</section>
-
-<section>
-  <div class="eyebrow">05 ── 使用技術</div>
-  <h2>技術のご質問にも、そのままお答えできます</h2>
-  <p class="lede">ここは、開発のご担当者様・技術がお分かりの方向けの記載です。業務のご相談だけであれば、読み飛ばしていただいて構いません。</p>
-  <div class="tech">
-    <dl>
-      <dt>言語・基盤</dt>
-      <dd>TypeScript / JavaScript / React / Node.js / Java / Spring / Python</dd>
-      <dt>AI</dt>
-      <dd>Claude API（帳票・文書の読み取り、要約）／ AIを使った開発（Claude Code・Codex）</dd>
-      <dt>公開・運用</dt>
-      <dd>Vercel / Supabase / GitHub（上記の公開ツール2本は、いずれも実際にこの構成で公開・運用しています）</dd>
-      <dt>得意</dt>
-      <dd>ブラウザの中だけで完結する軽量ツール（データを外部に出さない構成）／ AIによる帳票読み取り／ CSV・Excelの処理</dd>
-    </dl>
+<!-- ══ 03 対応範囲（紙） ══ -->
+<section class="band-paper">
+  <div class="wrap narrow"><span class="anchor" id="scope"></span>
+    <div class="eyebrow"><span class="no">03</span>対応範囲</div>
+    <h2>できることと、お受けしないことを先に申し上げます</h2>
+    <div class="scope">
+      <div class="surf">
+        <h3>お受けしていること</h3>
+        <ul>
+          <li>Excel・スプレッドシートの集計、転記の自動化</li>
+          <li>フォームの回答から書類・通知を作る仕組み</li>
+          <li>紙・写真の読み取り（AIによる帳票の読み取り）</li>
+          <li>業務・Webサイトの健康診断レポート</li>
+          <li>AI活用の伴走サポート・社内研修</li>
+        </ul>
+      </div>
+      <div class="surf">
+        <h3>お受けしていないこと</h3>
+        <ul>
+          <li>見た目を整えるだけのWebサイト制作</li>
+          <li>大規模な基幹システムの構築</li>
+          <li>お客様の実データを私の手元でお預かりする前提の作業</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="contact">
-  <div class="contact">
-    <div class="eyebrow">CONTACT</div>
+<!-- ══ 04 仕事の進め方（白） ══ -->
+<section class="band-sheet">
+  <div class="wrap narrow"><span class="anchor" id="flow"></span>
+    <div class="eyebrow"><span class="no">04</span>仕事の進め方</div>
+    <h2>ズレたまま進めない、が一番大事だと考えています</h2>
+    <ol class="steps">
+      <li class="surf"><span class="no">01</span><b>お困りごとを伺います</b><span>いまの手順を、実際の作業のとおりに教えてください。「これは自動化できるのか」の段階で構いません。</span></li>
+      <li class="surf"><span class="no">02</span><b>私の言葉で整理してお見せします</b><span>やること・やらないこと・費用・期間を紙にしてご確認いただき、認識が合ってから着手します。</span></li>
+      <li class="surf"><span class="no">03</span><b>ダミーデータで製作します</b><span>開発中は、お客様の実データやパスワードを外に出しません。</span></li>
+      <li class="surf"><span class="no">04</span><b>落とすつもりで検査します</b><span>想定外の入力を入れて壊れないことを確認し、検査の記録を残します。</span></li>
+      <li class="surf"><span class="no">05</span><b>マニュアルを付けて納品し、その後も直します</b><span>納品後1週間は無償で修正。保守・改善のご提案もいたします。</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ 05 使用技術（紙） ══ -->
+<section class="band-paper">
+  <div class="wrap narrow"><span class="anchor" id="tech"></span>
+    <div class="eyebrow"><span class="no">05</span>使用技術</div>
+    <h2>技術のご質問にも、そのままお答えできます</h2>
+    <p class="lede">ここは、開発のご担当者様・技術がお分かりの方向けの記載です。業務のご相談だけであれば、読み飛ばしていただいて構いません。</p>
+    <div class="tech surf">
+      <dl>
+        <dt>言語・基盤</dt>
+        <dd>TypeScript / JavaScript / React / Node.js / Java / Spring / Python</dd>
+        <dt>AI</dt>
+        <dd>Claude API（帳票・文書の読み取り、要約）／ AIを使った開発（Claude Code・Codex）</dd>
+        <dt>公開・運用</dt>
+        <dd>Vercel / Supabase / GitHub（上記の公開ツール2本は、いずれも実際にこの構成で公開・運用しています）</dd>
+        <dt>得意</dt>
+        <dd>ブラウザの中だけで完結する軽量ツール（データを外部に出さない構成）／ AIによる帳票読み取り／ CSV・Excelの処理</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT（深藍帯・出口） ══ -->
+<section class="band-deep dark">
+  <div class="wrap narrow contact-actions"><span class="anchor" id="contact"></span>
+    <div class="eyebrow"><span class="no">CONTACT</span></div>
     <h2>まずは、お話を聞かせてください</h2>
-    <p style="margin-bottom:14px">「これって自動化できるの？」という段階のご相談も歓迎です。<br>下のフォームから送信いただければ、<strong>24時間以内</strong>にご返信します。</p>
-    <p style="margin-bottom:22px;font-size:12.5px">相談・お見積りは無料です。無理な営業はいたしません。</p>
-    <a class="btn" href="https://forms.gle/Uc52S8TTHfyMNLF69" target="_blank" rel="noopener">相談フォームを開く（無料）</a>
-    <p style="margin-top:14px;font-size:12px">※ フォームはGoogleフォームを利用しています。</p>
+    <p class="contact-copy">「これって自動化できるの？」という段階のご相談も歓迎です。<br>下のフォームから送信いただければ、<strong>24時間以内</strong>にご返信します。</p>
+    <p class="contact-copy sub">相談・お見積りは無料です。無理な営業はいたしません。</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://forms.gle/Uc52S8TTHfyMNLF69" target="_blank" rel="noopener">相談フォームを開く（無料）</a>
+    </div>
+    <p class="contact-note">※ フォームはGoogleフォームを利用しています。</p>
   </div>
 </section>
 
+</main>
+
+<!-- ══ フッター ══ -->
 <footer>
-  <p><a class="src" href="./">トップページへ戻る</a></p>
-  <p style="margin-top:14px">© 2026 Shunya Fujita</p>
-  <p>お問い合わせフォームはGoogle LLCのサービスを利用しています。ご入力いただいた情報は、ご相談への回答と見積りのご連絡にのみ使用し、第三者に提供しません。</p>
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 10h7M8 15.5h7M8 21h7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 25.5h8.5L26 9.5" stroke="#C7A03C" stroke-width="2.4" fill="none"/></svg>
+      <span class="nm">藤田俊哉</span>
+    </div>
+    <div class="foot-right">
+      <p class="cr">© 2026 Shunya Fujita</p>
+      <p><a href="./"><span>トップページへ戻る</span></a></p>
+      <p>お問い合わせフォームはGoogle LLCのサービスを利用しています。ご入力いただいた情報は、ご相談への回答と見積りのご連絡にのみ使用し、第三者に提供しません。</p>
+    </div>
+  </div>
 </footer>
 
-</div>
-<!--
-検収メモ（PRINCIPLES §3.5 自己批評6軸／作成: 2026-07-14）
-主張5（見出しがすべて主張文・「触って確かめてください」が一貫）／階層4（実績→証拠→範囲→進め方の順で読ませる）／
-実行4（実物リンク・ソースコード・診断レポート実物への導線）／具体性5（数字はすべて実測か想定かを明記・出所あり）／
-抑制4（色はLPと同一の5色以内・強調色goldは2箇所のみ）／構成の独自性4（「品質の担保」＝検収の記録を見せる構成は同業の型にない）
--->
 </body>
 </html>

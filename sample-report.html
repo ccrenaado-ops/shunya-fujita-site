@@ -4,84 +4,147 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Webサイト診断レポート サンプル（Before/After 実例）</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<!--
+  付随ページ統一 / sample-report.html（事業用LPリビルド 決定事項7・site-unify-plan.md）
+  分岐A（オーナー確定 2026-07-16）= 「器のみ統一・中身はレポートのまま」。
+  基準= website/index.html（新LP参照実装）＋ works.html（器の実装見本）＋ guardrails v3 ＋ 本番 design-system（report-doc）。
+  統一するもの（器）: ブランドロゴ／フォント／非純白地2階調／深藍系トークン（純白 #fff・朱 #C73E2E を廃止）／:focus-visible。
+  維持するもの（本体）: スコア帯・診断表・Before/After・正直な報告・料金表・印刷組版（report-doc の実務的見た目）。
+  文言・数値・スコア・料金は現行 projects/事業用LP/sample-report.html を一言一句維持（デザイン統一であって創作ではない）。
+  共通基盤（:root 19トークン・.eyebrow/h2・改行制御・focus）は works.html からコピーし値一致（LPドメイン3面のドリフト防止）。
+
+  【§0 装飾の予算列挙（guardrails v3 §0-4）】金 3用途:
+    ① ブランドの金導線モチーフ（ロゴマーク＝先頭brand＋フッターの2箇所・反復1用途/2個）
+    ② セクション番号 .no（.eyebrow の 01〜04＝4個・明地 gold-text）
+    ③ 診断の改善到達値＝機能色 --up（=var(--gold-text) #8A6A22・金相の濃側・on紙で本文AAを確保）: score-after num（1）＋表 .up（複数）＋ba after label（3）
+       ＝1用途・理由明記のうえ採用（現行の朱 accent の機能的役割を金へ寄せる。オーナー確定 2026-07-16）
+  同時表示（§0-2）: 深藍全幅帯（FV/CONTACT）は非採用＝レポート本体の白/紙文書性を維持（分岐A「中身はレポートのまま」）。
+    装飾効果（グラデ・影・blur・モーション）はゼロ。金はアクセント色として別枠管理。b/c/d/e は不採用。
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ═══ 共通基盤（website/index.html・works.html からコピー・:root 19トークンは値完全一致） ═══ */
 :root{
-  --paper:#FFFFFF; --ink:#1C1C1A; --ink-soft:#5A5A54;
-  --primary:#2B3A55; --accent:#C73E2E; --line:#E4E4DF;
+  --ink:#17263B; --ink-soft:#48566D;
+  --paper:#F6F4EF; --sheet:#FCFBF8;
+  --deep:#17263B; --deep-lift:#1E3049; --deep-floor:#121E30;
+  --line:#D8D4C9; --line-strong:#97938A;
+  --on-deep:#F2EFE7; --on-deep-soft:#A9B3C4; --deep-line:rgba(242,239,231,.22);
+  --gold:#C7A03C; --gold-deep:#A6832F; --gold-text:#8A6A22;  /* 明地テキスト用の金（紙4.59/暖白4.87=AA）。深藍上は--gold(6.19） */
+  --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',sans-serif; --mono:'IBM Plex Mono',monospace;
+  --sec-y:clamp(56px,7.5vw,92px);
+  --sec-y-s:clamp(48px,6vw,72px);
 }
+/* レポート固有の意味層「向上」（Before/After）。値は共通トークン --gold-text を参照し、sample独自リテラル #8A6A22 を廃止＝ドリフト解消（オーナー確定 2026-07-17） */
+:root{ --up:var(--gold-text) }
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:'Zen Kaku Gothic New',Meiryo,sans-serif;font-size:15.5px;line-height:1.95}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.95;letter-spacing:.04em;-webkit-font-smoothing:antialiased}
+body{line-break:strict}
+h1,h2,h3,p,li,dt,dd,figcaption,.eyebrow,.lead,.note{word-break:auto-phrase}
+th,td,th *,td *{word-break:normal}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+img{max-width:100%;display:block}
+a{color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
 .container{max-width:960px;margin:0 auto;padding:0 24px}
-.serif{font-family:'Shippori Mincho B1','Yu Mincho',serif}
-.mono{font-family:'IBM Plex Mono',Consolas,monospace}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.nw{white-space:nowrap}
 
-.doc-meta{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0 12px;
-  border-bottom:2px solid var(--ink);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;flex-wrap:wrap;gap:8px}
+/* ── 見出しの共通文法（works と一致・番号は金 idiom） ── */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink-soft);margin-bottom:14px;display:flex;align-items:center;gap:13px}
+.eyebrow .no{color:var(--gold-text);font-weight:600}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.4vw,26px);line-height:1.55;letter-spacing:.01em;margin-bottom:16px}
 
-header{padding:48px 0 0}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:.14em;margin-bottom:12px}
-h1{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:32px;line-height:1.5;margin-bottom:16px}
+/* ── ブランド器（発行元ロゴ＝先頭・sticky にはしない＝レポートの文書性を保つ） ── */
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;padding:28px 0 4px;min-height:44px}
+.brand svg{width:30px;height:30px;color:var(--ink);flex:none}
+.brand .nm{font-family:var(--serif);font-weight:800;font-size:16.5px;letter-spacing:.05em;line-height:1.2;color:var(--ink)}
+.brand .nm small{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.26em;color:var(--ink-soft);font-weight:400;margin-top:2px}
+
+/* ═══ レポート本体（report-doc の実務的組版を維持・色のみブランド統一） ═══ */
+.doc-meta{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 12px;
+  border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.06em;flex-wrap:wrap;gap:8px}
+
+header{padding:40px 0 0}
+h1{font-family:var(--serif);font-weight:800;font-size:clamp(26px,3vw,32px);line-height:1.5;margin-bottom:16px;color:var(--ink)}
 .lead{color:var(--ink-soft);max-width:44em}
-.verdict{border-left:4px solid var(--primary);background:#F7F7F4;padding:18px 22px;margin:26px 0 0}
-.verdict b{color:var(--primary)}
+.verdict{border-left:4px solid var(--ink);background:var(--sheet);padding:18px 22px;margin:26px 0 0}
+.verdict b{color:var(--ink)}
 
 section{padding:56px 0 0}
-.sec-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--accent);letter-spacing:.12em;margin-bottom:10px}
-h2{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:24px;line-height:1.55;margin-bottom:16px}
 p{margin-bottom:12px;max-width:46em}
 .note{font-size:13px;color:var(--ink-soft)}
 
 .score-strip{display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid var(--line);margin:24px 0 0;text-align:center;align-items:center}
 .score-cell{padding:26px 16px}
-.score-cell .lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.12em;margin-bottom:6px}
-.score-cell .num{font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:600;line-height:1.2}
+.score-cell .lbl{font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.12em;margin-bottom:6px}
+.score-cell .num{font-family:var(--mono);font-size:44px;font-weight:600;line-height:1.2}
 .score-cell .num small{font-size:18px;font-weight:400;color:var(--ink-soft)}
 .score-before .num{color:var(--ink-soft)}
-.score-after .num{color:var(--accent)}
+.score-after .num{color:var(--up)}
 .score-arrow{font-size:22px;color:var(--ink-soft);padding:0 18px}
 
 table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0 0}
-th{background:var(--ink);color:#fff;font-weight:500;text-align:left;padding:10px 14px;font-size:13px}
+th{background:var(--deep);color:var(--on-deep);font-weight:500;text-align:left;padding:10px 14px;font-size:13px}
 td{border-bottom:1px solid var(--line);padding:10px 14px;vertical-align:top}
-td.num{font-family:'IBM Plex Mono',monospace;text-align:right;white-space:nowrap}
-.up{color:var(--accent);font-weight:700}
+td.num{font-family:var(--mono);text-align:right;white-space:nowrap}
+.up{color:var(--up);font-weight:700}
 
 .ba{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0 0}
-.ba > div{background:#fff;padding:18px 20px}
-.ba .ba-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;margin-bottom:8px;color:var(--ink-soft)}
-.ba .after .ba-label{color:var(--accent)}
+.ba > div{background:var(--sheet);padding:18px 20px}
+.ba .ba-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;margin-bottom:8px;color:var(--ink-soft)}
+.ba .after .ba-label{color:var(--up)}
 .ba p{font-size:13.5px;margin-bottom:0;line-height:1.85}
 
-.honest{border:1px solid var(--primary);border-left:4px solid var(--primary);background:#F7F7F4;padding:18px 22px;margin:26px 0 0}
-.honest .h-title{color:var(--primary);font-weight:700;margin-bottom:6px}
+.honest{border:1px solid var(--ink);border-left:4px solid var(--ink);background:var(--sheet);padding:18px 22px;margin:26px 0 0}
+.honest .h-title{color:var(--ink);font-weight:700;margin-bottom:6px}
 
 footer{margin-top:64px;border-top:2px solid var(--ink);padding:22px 0 56px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.foot-brand svg{width:24px;height:24px;color:var(--ink);flex:none}
+.foot-brand .nm{font-family:var(--serif);font-weight:700;font-size:14.5px;color:var(--ink)}
 footer p{font-size:12.5px;color:var(--ink-soft);line-height:1.9;margin-bottom:6px}
+footer a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;vertical-align:middle}
+footer a span{border-bottom:1px solid var(--line-strong);padding-bottom:1px}
+footer a:hover span{border-bottom-color:var(--ink)}
 
 @page{size:A4;margin:12mm;}
 @media print{
-  body{font-size:13px;line-height:1.85}
+  body{background:#fff;font-size:13px;line-height:1.85}
+  .brand{padding:0 0 8px}
   .container{max-width:100%;padding:0}
   section{padding:36px 0 0}
   h1{font-size:26px} h2{font-size:19px}
+  .verdict,.honest,.ba > div{background:#fff}
   .score-strip,.ba,.verdict,.honest,table{page-break-inside:avoid}
   a{color:inherit;text-decoration:none}
+  footer a span{border:none}
 }
-@media (max-width:640px){.ba{grid-template-columns:1fr}.score-strip{grid-template-columns:1fr}.score-arrow{transform:rotate(90deg);padding:8px 0}h1{font-size:26px}}
-/* ===== 日本語の改行制御（PRINCIPLES §1-8・2026-07-10 制定）=====
-   指定しないと「信じる材」「料」のように語の途中で改行が割れる。
-   auto-phrase は Chrome/Edge で有効。未対応ブラウザは通常改行にフォールバックするため害はない。 */
-body{line-break:strict}
-h1,h2,h3,h4,h5,h6,p,li,blockquote,dt,dd,figcaption{word-break:auto-phrase}
-th,td,th *,td *{word-break:normal} /* 表は除外: auto-phraseはmin-contentを最長の文節まで広げ、overflowに囲まれない表が縮まず横スクロールする（2026-07-10 実測 375px→568px） */
-h1,h2,h3,blockquote{text-wrap:balance}
-p{text-wrap:pretty}
+@media (max-width:640px){
+  .container{padding:0 20px}
+  .ba{grid-template-columns:1fr}
+  .score-strip{grid-template-columns:1fr}
+  .score-arrow{transform:rotate(90deg);padding:8px 0}
+  h1{font-size:26px}
+}
+/* ===== 日本語の改行制御（PRINCIPLES §1-8）: 指定しないと「信じる材／料」のように語の途中で改行が割れる。
+   表は除外（auto-phrase は min-content を最長の文節まで広げ、overflow に囲まれない表が縮まず横スクロールする・2026-07-10 実測）。
+   上部の共通基盤ブロックで body/見出し/本文/表の規律を定義済み。 ===== */
 </style>
 </head>
 <body>
 <div class="container">
+
+<a class="brand" href="./" aria-label="藤田俊哉 トップページへ">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 10h7M8 15.5h7M8 21h7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 25.5h8.5L26 9.5" stroke="#C7A03C" stroke-width="2.4" fill="none"/></svg>
+  <span class="nm">藤田俊哉<small>SHUNYA FUJITA</small></span>
+</a>
 
 <div class="doc-meta">
   <span>Webサイト診断レポート｜サンプル（実例）</span>
@@ -105,7 +168,7 @@ p{text-wrap:pretty}
 <p class="note" style="margin-top:10px">採点は7項目（第一印象・提案の明確さ・信頼の材料・サービス説明・不安の解消・行動導線・付帯情報）の重み付き合計。国内市場向けの評価基準を使用。</p>
 
 <section>
-  <div class="sec-eyebrow">01 ── 診断で見つかったこと</div>
+  <div class="eyebrow"><span class="no">01</span>診断で見つかったこと</div>
   <h2 class="serif">問題は「感じの良さ」ではなく「信じる材料の不足」だった</h2>
   <table>
     <tr><th>診断項目</th><th style="text-align:right">Before</th><th style="text-align:right">After</th><th>何をしたか</th></tr>
@@ -120,7 +183,7 @@ p{text-wrap:pretty}
 </section>
 
 <section>
-  <div class="sec-eyebrow">02 ── 改善のビフォー/アフター（抜粋）</div>
+  <div class="eyebrow"><span class="no">02</span>改善のビフォー/アフター（抜粋）</div>
   <h2 class="serif">直したのは「デザイン」ではなく「判断材料」</h2>
 
   <div class="ba">
@@ -138,16 +201,16 @@ p{text-wrap:pretty}
 </section>
 
 <section>
-  <div class="sec-eyebrow">03 ── 正直な報告</div>
+  <div class="eyebrow"><span class="no">03</span>正直な報告</div>
   <h2 class="serif">文章では直らない問題は、直らないと言います</h2>
   <div class="honest">
     <div class="h-title">この診断で最も点数が低かった「信頼の材料」（15点）は、改善後も15点のままです</div>
-    <p style="margin-bottom:0">理由は、実績・事例という「実物」が必要な項目だからです。文章の言い回しでは1点も動きません。この場合の処方は「実績を1件作って掲載する」であり、当サイトでは現在それを実行中です。<b>お客様の診断でも同じ方針を取ります——コピーの改善で直る問題と、事業の実体づくりが必要な問題を分けてお伝えし、後者に文章術の請求はしません。</b></p>
+    <p style="margin-bottom:0">理由は、実績・事例という「実物」が必要な項目だからです。文章の<span class="nw">言い回し</span>では1点も動きません。この場合の処方は「実績を1件作って掲載する」であり、当サイトでは現在それを実行中です。<b>お客様の診断でも同じ方針を取ります——コピーの改善で直る問題と、事業の実体づくりが必要な問題を分けてお伝えし、後者に文章術の請求はしません。</b></p>
   </div>
 </section>
 
 <section>
-  <div class="sec-eyebrow">04 ── 診断サービスのご案内</div>
+  <div class="eyebrow"><span class="no">04</span>診断サービスのご案内</div>
   <h2 class="serif">この形式のレポートを、御社のサイトで</h2>
   <table>
     <tr><th style="width:36%">サービス</th><th>内容</th><th style="width:18%">料金</th></tr>
@@ -159,9 +222,13 @@ p{text-wrap:pretty}
 </section>
 
 <footer>
-  <p>本サンプルは実際の診断・改善の記録です（対象: 作成者自身の事業サイト・2026-07-06実施）。スコアは記載の評価基準による相対値であり、売上・問い合わせ数の増加を保証するものではありません。</p>
+  <div class="foot-brand">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 10h7M8 15.5h7M8 21h7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 25.5h8.5L26 9.5" stroke="#C7A03C" stroke-width="2.4" fill="none"/></svg>
+    <span class="nm">藤田俊哉</span>
+  </div>
+  <p>本サンプルは実際の診断・改善の記録です（対象: 作成者自身の事業サイト・2026-07-06実施）。スコアは記載の評価基準による相対値であり、売上・<span class="nw">問い合わせ</span>数の増加を保証するものではありません。</p>
   <p>藤田俊哉｜業務自動化・AI導入サポート</p>
-  <p>ご相談・お申し込みは <a href="./#contact">相談フォーム</a> から承ります（無料）。<a href="./works.html">ほかの実績を見る</a></p>
+  <p>ご相談・お申し込みは <a href="./#contact"><span>相談フォーム</span></a> から承ります（無料）。<a href="./works.html"><span>ほかの実績を見る</span></a></p>
 </footer>
 
 </div>
